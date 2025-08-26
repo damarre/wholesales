@@ -1,0 +1,29 @@
+class CheckoutPage {
+    elements = {
+        placeOrderButton: () => cy.contains('button', 'Place Order'),
+        getWholesalePriceByProduct: (productName) =>
+            cy.contains('h3.wc-block-components-product-name', productName)
+              .closest('.wc-block-components-order-summary-item')
+              .find('ins.wc-block-components-product-price__value'),
+
+    }
+    getWholesalePriceByProduct(productName) {
+      return this.elements.getWholesalePriceByProduct(productName)
+        .invoke('text')
+        .then((text) => {
+          const cleaned = text.replace(/[^\d.,]/g, '').replace(',', '.');
+          return parseFloat(cleaned);
+        });
+    }
+
+    clickPlaceOrderButton() {
+      this.elements.placeOrderButton().click();
+    }
+
+    checkPlaceOrderButtonIsVisible() {
+      this.elements.placeOrderButton().should('be.visible');
+    }
+
+}
+
+export default new CheckoutPage();

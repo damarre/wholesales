@@ -1,0 +1,23 @@
+{
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^23.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
+    "cypress": "^14.5.4",
+    "cypress-dotenv": "^2.0.0",
+    "esbuild": "^0.25.9"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/e2e/steps/**/*.js"
+    ],
+    "json": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-json/report.json"
+    }
+  },
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "cypress run --spec \"cypress/e2e/features/*.feature\""
+  }
+}
