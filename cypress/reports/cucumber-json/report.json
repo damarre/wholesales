@@ -10,6 +10,14 @@
         "name": "Wholesale user sees wholesale, original, and sale prices",
         "steps": [
           {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 14000000
+            }
+          },
+          {
             "arguments": [],
             "keyword": "Given ",
             "line": 6,
@@ -19,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 6698000000
+              "duration": 7079000000
             }
           },
           {
@@ -32,39 +40,52 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3605000000
+              "duration": 3255000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I clear the cart if not empty",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8162000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 8,
+            "line": 9,
             "name": "I select \"Vintage Typewriter\" product",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 7090000000
+              "duration": 6148000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 9,
+            "line": 10,
             "name": "I add 1 units to the cart",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 620000000
+              "duration": 628000000
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 10,
+            "line": 11,
             "name": "the \"Wholesale Price\" should be displayed with value 81",
             "match": {
               "location": "not available:0"
@@ -77,118 +98,118 @@
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 11,
+            "line": 12,
             "name": "the \"Original Price\" should be displayed with value 90",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 48000000
+              "duration": 50000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 12,
+            "line": 13,
             "name": "the \"Sale Price\" should be displayed with value 50",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 38000000
+              "duration": 53000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 13,
+            "line": 14,
             "name": "I navigate to the \"Cart\" page",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 3578000000
+              "duration": 3791000000
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 14,
+            "line": 15,
             "name": "the cart should display an original price of 90",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 32000000
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 15,
-            "name": "the cart should display a wholesale price of 81",
-            "match": {
-              "location": "not available:0"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 31000000
+              "duration": 98000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
             "line": 16,
+            "name": "the cart should display a wholesale price of 81",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 44000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
             "name": "the cart should display a total price of 81",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 25000000
+              "duration": 54000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 17,
+            "line": 18,
             "name": "I click checkout button from cart",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 2549000000
+              "duration": 2705000000
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 18,
+            "line": 19,
             "name": "the checkout should display a wholesale price of 81",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 49000000
+              "duration": 54000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 19,
+            "line": 20,
             "name": "I see place order button is available",
             "match": {
               "location": "not available:0"
             },
             "result": {
               "status": "passed",
-              "duration": 24000000
+              "duration": 28000000
             }
           }
         ],
@@ -202,5 +223,459 @@
     "name": "Cart management",
     "tags": [],
     "uri": "cypress/e2e/features/checkout.feature"
+  },
+  {
+    "description": "  As a user\n  I want to see the correct pricing of products in the product listing",
+    "elements": [
+      {
+        "description": "",
+        "id": "product-management;retail-customer-can-only-see-original-and-sale-prices",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Retail customer can only see original and sale prices",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 16000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I am logged in as \"NON_WHOLESALE_ACCOUNT\" with password \"NON_WHOLESALE_PASSWORD\"",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5652000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "I am on the \"Shop\" page",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3128000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I select \"Vintage Typewriter\" product",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6383000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "the \"Sale Price\" should be displayed with value 50",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 58000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 10,
+            "name": "the \"Original Reguler Price\" should be displayed with value 90",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 48000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "the Wholesale Price should not be displayed",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 36000000
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "product-management;wholesale-user-sees-wholesale,-original,-and-sale-prices",
+        "keyword": "Scenario",
+        "line": 13,
+        "name": "Wholesale user sees wholesale, original, and sale prices",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 9000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 14,
+            "name": "I am logged in as \"WHOLESALE_ACCOUNT\" with password \"WHOLESALE_PASSWORD\"",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5697000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "I am on the \"Shop\" page",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3335000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 16,
+            "name": "I select \"Vintage Typewriter\" product",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6694000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "the \"Wholesale Price\" should be displayed with value 81",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 44000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "the \"Original Price\" should be displayed with value 90",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 52000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "the \"Sale Price\" should be displayed with value 50",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50000000
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "product-management",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Product management",
+    "tags": [],
+    "uri": "cypress/e2e/features/product.feature"
+  },
+  {
+    "description": "  As a wholesale user\n  I want to get corect pricing when I purchase product",
+    "elements": [
+      {
+        "description": "",
+        "id": "cart-management;wholesale-user-sees-wholesale,-original,-and-sale-prices",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Wholesale user sees wholesale, original, and sale prices",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 11000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I am logged in as \"WHOLESALE_ACCOUNT\" with password \"WHOLESALE_PASSWORD\"",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6176000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I am on the \"Shop\" page",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3334000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "I clear the cart if not empty",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8243000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "I select \"Vintage Typewriter\" product",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7211000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "I add 1 units to the cart",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 643000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "I go to \"Cart\" page from selected product cart",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3553000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "the cart should display an original price of 90",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 86000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "the cart should display a wholesale price of 81",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 43000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "the cart should display a total price of 81",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 16,
+            "name": "I click checkout button from cart",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2715000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "the checkout should display a wholesale price of 81",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 51000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "I see place order button is available",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke",
+            "line": 5
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "cart-management;wholesale-user-sees-wholesale,-original,-and-sale-prices",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Wholesale user sees wholesale, original, and sale prices",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 9000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 21,
+            "name": "I am logged in as \"WHOLESALE_ACCOUNT\" with password \"WHOLESALE_PASSWORD\"",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6705000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 22,
+            "name": "I am on the \"Shop\" page",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4146000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 23,
+            "name": "I select \"Vintage Typewriter\" product--",
+            "match": {
+              "location": "not available:0"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2786000000
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "cart-management",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Cart management",
+    "tags": [],
+    "uri": "cypress/e2e/features/test.feature"
   }
 ]

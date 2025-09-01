@@ -18,3 +18,9 @@ Scenario: Wholesale user sees wholesale, original, and sale prices
   And the "Original Price" should be displayed with value 90
   And the "Sale Price" should be displayed with value 50
 
+Scenario: Non login user sees original, and sale prices
+  Given I am on the "Shop" page
+  When I select "Vintage Typewriter" product
+  And the "Original Reguler Price" should be displayed with value 90
+  And the "Sale Price" should be displayed with value 50
+  And the Wholesale Price should not be displayed

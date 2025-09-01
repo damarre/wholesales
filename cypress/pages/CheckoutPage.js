@@ -11,6 +11,7 @@ class CheckoutPage {
       return this.elements.getWholesalePriceByProduct(productName)
         .invoke('text')
         .then((text) => {
+          // regex to extract numeric value
           const cleaned = text.replace(/[^\d.,]/g, '').replace(',', '.');
           return parseFloat(cleaned);
         });
