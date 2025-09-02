@@ -1,5 +1,7 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import CartPage from '../../pages/CartPage';
+import ShopPage from "../../pages/ShopPage";
+import PageFactory from '../../pages/PageFactory';
 
 Then("the cart should display an original price of {int}", function (originalPrice) {
   cy.get('@selectedProduct').then((productName) => {
@@ -23,5 +25,18 @@ Then("the cart should display a total price of {int}", function (totalPrice) {
 });
 
 When("I click checkout button from cart", function () {
-  CartPage.clickCheckoutButton();
+  cy.get('@selectedProduct').then((productName) => {
+    CartPage.clickCheckoutButton();
+  });
+});
+
+Given("I clear the cart if not empty", function () {
+  PageFactory.navigateToPage("Cart");
+  CartPage.clearClear();
+//   CartPage.clearCartIfNotEmpty();
+  PageFactory.navigateToPage("Shop");
+});
+
+When("I go to cart page", function () {
+  PageFactory.navigateToPage("Cart");
 });

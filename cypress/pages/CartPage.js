@@ -20,9 +20,9 @@ class CartPage {
     return this.elements.originalPrice(productName)
       .invoke('text')
       .then((text) => {
-      const cleaned = text.replace(/[^\d.,]/g, '').replace(',', '.');
+        const cleaned = text.replace(/[^\d.,]/g, '').replace(',', '.');
         // cy.log(`- Original price of ${productName}: ${cleaned}`);
-      return parseFloat(cleaned);
+        return parseFloat(cleaned);
       });
     }
 
@@ -30,8 +30,8 @@ class CartPage {
     return this.elements.wholesalePrice(productName)
       .invoke('text')
       .then((text) => {
-      const cleaned = text.replace(/[^\d.,]/g, '').replace(',', '.');
-      return parseFloat(cleaned);
+        const cleaned = text.replace(/[^\d.,]/g, '').replace(',', '.');
+        return parseFloat(cleaned);
       });
     }
 
@@ -42,13 +42,34 @@ class CartPage {
     clearCartIfNotEmpty() {
       cy.get('body').then(($body) => {
         if ($body.find('.wc-block-cart-item__remove-link').length > 0) {
-        cy.get('.wc-block-cart-item__remove-link').each(($btn) => {
-          cy.wrap($btn).click();
-        });
-          } else {
+          cy.get('.wc-block-cart-item__remove-link').each(($btn) => {
+            cy.wrap($btn).click();
+            cy.wait(500); // Wait for the item to be removed
+          });
+        } else {
           cy.log('Cart is already empty');
           }
-        });
+      });
+    }
+
+    // damar debug
+    clearClear() {
+      cy.wait(1000);
+      cy.get('body').then(($body) => {
+        if ($body.find('.wc-block-cart-item__remove-link').length === 0) {
+          cy.log('Cart is already empty');
+        } else {
+          this.removeAnyCartList();
+        }
+      });
+    }
+    
+    removeAnyCartList() {
+      cy.get('.wc-block-cart-item__remove-link').each(($btn, index, $list) => {
+        cy.log(`Clicking button #${index + 1} of ${$list.length} `);
+        cy.wrap($btn).click();
+        cy.wait(500);
+      });
     }
 
     getTotalPrice() {
@@ -63,7 +84,6 @@ class CartPage {
     clickCheckoutButton() {
       this.elements.checkoutButton().click();
     }
-
 }
 
 export default new CartPage();

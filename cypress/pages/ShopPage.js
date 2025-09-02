@@ -21,6 +21,10 @@ class ShopPage {
       cy.contains('h2.wp-block-post-title a', productName)
         .closest('li')
         .find('ins .woocommerce-Price-amount'),
+    viewCartButton: (productName) =>
+      cy.contains('h2.wp-block-post-title a', productName)
+        .closest('li')
+        .find('.added_to_cart'),
   };
 
   clickShopLink() {
@@ -31,13 +35,16 @@ class ShopPage {
     this.elements.shopHeader().should('be.visible');
   }
 
-  // Product card by product name
   productCardByName(productName) {
     return cy.contains('h2.wp-block-post-title a', productName)
       .closest('[data-wp-key^="product-item-"]');
   }
 
-  // High-level action for quick usage in tests
+  productCardName1(productName) {
+    return cy.contains('h2.wp-block-post-title a', productName)
+      .closest('[data-wp-interactive="woocommerce/product-collection"]');
+  }
+
   navigateAndVerifyShop() {
     this.clickShopLink();
     this.assertShopHeaderVisible();
@@ -79,7 +86,7 @@ class ShopPage {
 
       if (wholesalePriceNotFound) {
         cy.get('.wholesale_price_container').should('not.exist');
-        cy.log(`✅ Verified that no wholesale price is displayed for ${productName}`);
+        cy.log(`Verified that no wholesale price is displayed for ${productName}`);
       }
 
       // Check original price dynamically (no hasWholesalePrice flag)
@@ -93,7 +100,7 @@ class ShopPage {
             : cy.wrap(priceElements).eq(0);
 
           target.invoke('text').then((text) => {
-            cy.log(`✅ Original price of: ${text}`);
+            cy.log(`Original price of: ${text}`);
             const priceValue = parseInt(text.replace(/[^\d]/g, ''), 10);
             expect(priceValue).to.eq(originalPrice);
           });
@@ -105,7 +112,7 @@ class ShopPage {
           const count = $prices.length;
 
           if (count === 0) {
-            cy.log('❌ No price element found in fallback');
+            cy.log('No price element found in fallback');
             return;
           }
 
@@ -114,7 +121,7 @@ class ShopPage {
             : cy.wrap($prices).eq(0); // Use index 0 if multiple
 
           target.invoke('text').then((text) => {
-            cy.log(`✅ Original price (fallback): ${text}`);
+            cy.log(`Original price (fallback): ${text}`);
             const priceValue = parseInt(text.replace(/[^\d]/g, ''), 10);
             expect(priceValue).to.eq(originalRegulerPrice);
           });
@@ -127,9 +134,9 @@ class ShopPage {
           .eq(1) // Get the second price (sale price)
           .invoke('text')
           .then((text) => {
-            cy.log(`✅ Sale price text: ${text}`);
+            cy.log(`Sale price text: ${text}`);
             const priceValue = parseInt(text.replace(/[^\d]/g, ''), 10);
-            expect(priceValue).to.eq(salePrice); // or use your dynamic value
+            expect(priceValue).to.eq(salePrice); 
         });
       }
     });
@@ -138,6 +145,62 @@ class ShopPage {
   // Add product to cart by product name
   addToCart(productName) {
     this.elements.addToCartButton(productName).click();
+  }
+
+  // start debug damar
+  navigateToCartFromProduct() {
+    cy.get('@selectedProduct').then((productName) => {
+      cy.log(`- Navigating to Cart from product: ${productName}`);
+      this.productCardByName(productName).within(() => {
+        cy.get('.wp-block-post-title')
+          .invoke('text')
+          .then((title) => {
+            cy.log(`- Product title: ${title}`);
+          });
+        cy.get('.added_to_cart')
+          .invoke('text')
+          .then((text) => {
+            cy.log(`- Added to cart text: ${text}`);
+          });
+        cy.get('.added_to_cart').click();
+      });
+    });
+  }
+
+  clickProductDetail(productName) {
+    cy.get('@selectedProduct').then((productName) => {
+      this.productCardByName(productName).within(() => {
+        cy.get('.wp-block-post-title').click();
+      });
+    });
+  }
+
+  clickProductDetail1(productName) {
+    cy.get('@selectedProduct').then((productName) => {
+      this.productCardName1(productName).within(() => {
+        cy.get('.wp-block-post-title').click();
+      });
+    });
+  }
+
+  selectFilter(filterName) {
+    // Default sorting
+    // Sort by popularity
+    // Sort by average rating
+    // Sort by latest
+    // Sort by price: low to high
+    // Sort by price: high to low
+    cy.get('select.orderby').select(filterName);
+  }
+
+  checkProductExists_() {
+    const products = ['3-Speed Bike', 'Black and White', 'Hi-Fi Headphones'];
+    products.forEach((productName) => {
+      this.productCardByName(productName).within(() => {
+        cy.log(`- Checking product: ${productName}`);
+        cy.get('.wp-block-post-title').should('have.text', productName)
+      });
+    });
   }
 }
 

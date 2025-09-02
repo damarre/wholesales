@@ -15,3 +15,10 @@ Then("the checkout should display a wholesale price of {int}", function (wholesa
 Then("I see place order button is available", function () {
   CheckoutPage.checkPlaceOrderButtonIsVisible();
 });
+
+Then("the original price should be displayed with value {float}", function (originalPrice) {
+  cy.get('@selectedProduct').then((productName) => {
+    cy.log(`- Selected product in cart step: ${productName}`);
+    CheckoutPage.getOriginalPriceByProduct(productName).should('eq', originalPrice);
+  });
+});
