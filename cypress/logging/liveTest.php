@@ -30,7 +30,6 @@ class LiveTestSample {
             'time'         => current_time('mysql'),
             'event'        => 'Added to cart',
             'cart_key'     => $cart_item_key,
-            'key'          => $cart_item_key,
             'product_id'   => $product_id,
             'variation_id' => $variation_id,
             'variation'    => $variation,
