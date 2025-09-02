@@ -36,3 +36,7 @@ Given("I clear the cart if not empty", function () {
 //   CartPage.clearCartIfNotEmpty();
   PageFactory.navigateToPage("Shop");
 });
+
+When("I go to cart page", function () {
+  PageFactory.navigateToPage("Cart");
+});

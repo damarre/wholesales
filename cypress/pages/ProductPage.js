@@ -1,6 +1,8 @@
 class ProductPage {
   elements = {
-  
+    originalPrice: () => cy.get('.woocommerce-Price-amount').eq(0),
+    salePrice: () => cy.get('.woocommerce-Price-amount').eq(1),
+    wholesalePrice: () => cy.get('.woocommerce-Price-amount').eq(2),
   };
 
   productCardByName(productName) {
@@ -32,8 +34,7 @@ class ProductPage {
   verifyWholesale(productName) {
     cy.log(`Verifying wholesale for product: ${productName}`);
     this.productCardByName(productName).within(() => {
-      cy.get('.woocommerce-Price-amount')
-        .eq(0)
+      cy.get(this.elements.originalPrice())
         .invoke('text')
         .then((text) => {
           cy.log(`Original price: ${text}`);
